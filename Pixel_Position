@@ -1,0 +1,57 @@
+import cv2            # Before import the cv2 install opencv-python
+
+from PIL import Image         # from pillow import image
+
+import matplotlib.pyplot as plt     # import matplotlib for plottings or co-ordinates
+
+
+def load_image(image_path):        #Load an image from the specified path using OpenCV.
+    
+    image = cv2.imread(image_path)    #image_path (str): Path to the image file.
+    
+    return image
+
+
+
+
+def pixel_to_coordinates(image, pixel):  # Convert the pixel position to coordinates.
+    
+    height, width, _ = image.shape
+    
+    x, y = pixel                # pixel (tuple): The pixel position (x, y).  
+    
+    return x, y          # x (int): The x-coordinate (horizontal distance from the left edge).
+                         # y (int): The y-coordinate (vertical distance from the top edge).
+                                         
+                                         
+                                                                               
+
+def display_image_with_pixel(image, pixel):
+    
+    x, y = pixel
+    
+    cv2.circle(image, (x, y), 5, (0, 255, 0), -1)  # Draw a circle at the specified pixel position with a radius of 5 pixels and green color (BGR: 0, 255, 0)
+    
+    plt.imshow(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))  # Convert the image from BGR to RGB for displaying with Matplotlib
+    
+    plt.show()        # Display the image using Matplotlib
+
+
+
+
+def main():
+    image_path = "C:/Users/LENOVO/Desktop/Smiley_1.png"     # Replace back slashes with forword slashes
+    
+    pixel = (400, 300)          # Pixel position to highlight
+    
+    image = load_image(image_path)         # Load the image
+    
+    x, y = pixel_to_coordinates(image, pixel)  # Convert the pixel position to coordinates
+    
+    print(f'The pixel at position {pixel} has coordinates (x={x}, y={y})')   # Print the coordinates
+    
+    display_image_with_pixel(image, pixel) # Display the image with the highlighted pixel position
+
+if __name__ == "__main__":
+    main()
+

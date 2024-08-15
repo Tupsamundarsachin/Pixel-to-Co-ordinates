@@ -1,0 +1,4 @@
+openCV-python
+cv2
+pillow
+Matplotlib
